@@ -16,6 +16,7 @@ gem 'flutie'
 gem 'bourbon'
 gem 'redis'
 gem 'hiredis'
+gem 'bourne'
 
 group :development, :test do
   gem 'foreman'

@@ -19,5 +19,13 @@ feature 'user creates a link' do
 
     page.should have_content 'Search is already taken'
   end
+
+  scenario 'without a name' do
+    visit '/'
+    fill_in 'Url', with: 'http://google.com'
+    click_button 'Create'
+
+    page.text.should match /Your url: http:\/\/example.com\/\w+/
+  end
 end
 
