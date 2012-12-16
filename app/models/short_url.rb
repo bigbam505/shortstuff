@@ -17,6 +17,13 @@ class ShortUrl
     end
   end
 
+  def self.find_by_name(name)
+    stored_url = redis.get(name)
+    if stored_url
+      ShortUrl.new(name: name, url: stored_url)
+    end
+  end
+
   def full_url
     "http://#{HOSTNAME}/#{name}"
   end
@@ -46,6 +53,10 @@ class ShortUrl
   end
 
   def redis
+    @redis ||= Redis.new(:driver => :hiredis)
+  end
+
+  def self.redis
     @redis ||= Redis.new(:driver => :hiredis)
   end
 end

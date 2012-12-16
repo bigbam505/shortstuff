@@ -53,4 +53,24 @@ describe ShortUrl do
       expect(shorturl.full_url).to eq('http://example.com/mypage')
     end
   end
+
+  describe ".find_by_name" do
+    context "when there is an instance with the name" do
+      it "returns the instance" do
+        short_url = ShortUrl.new(name: 'test', url: 'http://www.bing.com').save
+
+        searched_short_url = ShortUrl.find_by_name('test')
+
+        expect(searched_short_url.name).to eq('test')
+      end
+    end
+
+    context 'when there is not an instance with the name' do
+      it "returns nil" do
+        searched_short_url = ShortUrl.find_by_name('test')
+
+        expect(searched_short_url).to be_nil
+      end
+    end
+  end
 end

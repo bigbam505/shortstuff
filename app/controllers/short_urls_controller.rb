@@ -12,4 +12,9 @@ class ShortUrlsController < ApplicationController
 
     redirect_to new_short_url_path
   end
+
+  def show
+    short_url = ShortUrl.find_by_name(params[:name])
+    redirect_to short_url.url
+  end
 end
