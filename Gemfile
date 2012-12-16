@@ -14,6 +14,8 @@ gem 'jquery-rails'
 gem 'thin'
 gem 'flutie'
 gem 'bourbon'
+gem 'redis'
+gem 'hiredis'
 
 group :development, :test do
   gem 'foreman'
