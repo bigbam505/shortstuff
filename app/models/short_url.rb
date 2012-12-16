@@ -12,6 +12,10 @@ class ShortUrl
     end
   end
 
+  def full_url
+    "http://#{HOSTNAME}/#{name}"
+  end
+
   private
 
   def existing_entry_with_same_name?

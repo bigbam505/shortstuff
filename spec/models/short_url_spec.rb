@@ -23,4 +23,11 @@ describe ShortUrl do
       expect(shorturl.url).to eq("myurl")
     end
   end
+
+  describe "#full_url" do
+    it "returns the full path to the short url" do
+      shorturl = ShortUrl.new(name: 'mypage', url: 'http://www.url.com')
+      expect(shorturl.full_url).to eq('http://example.com/mypage')
+    end
+  end
 end

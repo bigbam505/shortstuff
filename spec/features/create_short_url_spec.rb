@@ -8,4 +8,16 @@ feature 'user creates a link' do
 
     page.should have_content 'Your url: http://example.com/Search'
   end
+
+  scenario 'url name is already taking' do
+    ShortUrl.new(name: "Search",url: "http://bing.com").save
+
+    visit '/'
+    fill_in 'Url', with: 'http://google.com'
+    fill_in 'Name', with: 'Search'
+    click_button 'Create'
+
+    page.should have_content 'Search is already taken'
+  end
 end
+
