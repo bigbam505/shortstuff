@@ -15,6 +15,11 @@ class ShortUrlsController < ApplicationController
 
   def show
     short_url = ShortUrl.find_by_name(params[:name])
-    redirect_to short_url.url
+    if short_url
+      redirect_to short_url.url
+    else
+      flash[:notice] = "This link does not exist."
+      redirect_to root_path
+    end
   end
 end

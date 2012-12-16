@@ -9,4 +9,10 @@ feature 'redirecting users to short links', js: true do
 
     page.should have_content 'Google'
   end
+
+  scenario 'visiting an invalid link' do
+    visit '/linkthatdoesnotexist'
+
+    page.should have_content 'This link does not exist.'
+  end
 end
