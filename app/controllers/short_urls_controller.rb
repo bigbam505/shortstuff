@@ -1,4 +1,6 @@
 class ShortUrlsController < ApplicationController
+  respond_to :json, :html
+
   def new
   end
 
@@ -6,10 +8,16 @@ class ShortUrlsController < ApplicationController
     short_url = ShortUrl.new(url: params[:url], name: params[:name])
     if short_url.save
       flash[:notice] = "Your url: #{short_url.full_url}"
-      redirect_to new_short_url_path
+      respond_to do |format|
+        format.html { redirect_to new_short_url_path }
+        format.json { render json: short_url.to_json }
+      end
     else
       @errors = short_url.errors
-      render :new
+      respond_to do |format|
+        format.html { render :new }
+        format.json { render json: {errors: @errors }, status: :error }
+      end
     end
 
   end

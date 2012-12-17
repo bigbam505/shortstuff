@@ -34,6 +34,10 @@ class ShortUrl
     "http://#{HOSTNAME}/#{name}"
   end
 
+  def as_json(options = {})
+    { full_url: full_url }.merge(super)
+  end
+
   private
 
   def name_must_be_unique
