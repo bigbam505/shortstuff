@@ -40,5 +40,3 @@ RSpec.configure do |config|
     redis.flushall
   end
 end
-
-Capybara.javascript_driver = :webkit
