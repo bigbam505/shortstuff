@@ -6,11 +6,12 @@ class ShortUrlsController < ApplicationController
     short_url = ShortUrl.new(url: params[:url], name: params[:name])
     if short_url.save
       flash[:notice] = "Your url: #{short_url.full_url}"
+      redirect_to new_short_url_path
     else
-      flash[:error] = "#{short_url.name} is already taken"
+      @errors = short_url.errors
+      render :new
     end
 
-    redirect_to new_short_url_path
   end
 
   def show

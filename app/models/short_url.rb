@@ -1,7 +1,13 @@
 class ShortUrl
+  extend ActiveModel::Naming
+  include ActiveModel::Conversion
+  include ActiveModel::Validations
   attr_reader :url, :name
 
-  def initialize(options)
+  validate :name_must_be_unique
+  validates :url, format: { with: (/^http(s)?:\/\//), message: "must start with http(s)://" }
+
+  def initialize(options = {})
     if options[:name].present?
       @name = options[:name]
     else
@@ -12,7 +18,7 @@ class ShortUrl
   end
 
   def save
-    unless existing_entry_with_same_name?
+    if valid?
       create_entry
     end
   end
@@ -29,6 +35,16 @@ class ShortUrl
   end
 
   private
+
+  def name_must_be_unique
+    if existing_entry_with_same_name?
+      errors.add(:name, "a link already exists named #{name}")
+    end
+  end
+
+  def persisted?
+    false
+  end
 
   def existing_entry_with_same_name?
     entry_exists_with_name?(@name)

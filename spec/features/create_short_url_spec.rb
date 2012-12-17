@@ -17,7 +17,7 @@ feature 'user creates a link' do
     fill_in 'Name', with: 'Search'
     click_button 'Create'
 
-    page.should have_content 'Search is already taken'
+    page.should have_content 'name - a link already exists named Search'
   end
 
   scenario 'without a name' do
@@ -26,6 +26,14 @@ feature 'user creates a link' do
     click_button 'Create'
 
     page.text.should match /Your url: http:\/\/example.com\/\w+/
+  end
+
+  scenario 'with an invalid url' do
+    visit '/'
+    fill_in 'Url', with: 'google.com'
+    click_button 'Create'
+
+    page.should have_content 'url - must start with http(s)://'
   end
 end
 
