@@ -1,4 +1,4 @@
-# shortstuff [![Build Status](https://secure.travis-ci.org/drapergeek/shortstuff.png?branch=master)](http://travis-ci.org/drapergeek/shortstuff) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/drapergeek/shortstuff)
+# shortstuff [![Build Status](https://travis-ci.org/drapergeek/shortstuff.png?branch=master)](https://travis-ci.org/drapergeek/shortstuff)[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/drapergeek/shortstuff)
 ============================
 shortstuff is a small rails app that acts as a URL shortener. It is designed for use inside a closed network where an admin can control the DNS server so you can make your own url service. It does not offer any authentication (this is by design) and URLs are never expired. There is a very simple JSON api for creating new URLs. I may release a CLI gem that interfaces with this via some kind of ENV configuration.
 
