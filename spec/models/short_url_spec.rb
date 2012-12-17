@@ -4,15 +4,16 @@ describe ShortUrl do
   describe "#save" do
     context 'when there is not an entry with that name' do
       it "returns false" do
-        shorturl = ShortUrl.new(name: "myname", url: "myurl").save
+        shorturl = ShortUrl.new(name: "myname", url: "http://www.bing.com").save
         shorturl = ShortUrl.new(name: "myname", url: "http://www.google.com")
+
         expect(shorturl.save).to be_false
       end
     end
 
     context 'when there is not an entry with that name' do
       it 'returns true' do
-        shorturl = ShortUrl.new(name: "myname", url: "myurl")
+        shorturl = ShortUrl.new(name: "myname", url: "http://myurl")
         expect(shorturl.save).to be_true
       end
     end
