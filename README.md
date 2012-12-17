@@ -1,4 +1,4 @@
-You look great in Suspenders
+# shortstuff [![Build Status](https://secure.travis-ci.org/drapergeek/shortstuff.png?branch=master)](http://travis-ci.org/drapergeek/shortstuff) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/drapergeek/shortstuff)
 ============================
 
 Use the following guides for getting things done, programming well, and
