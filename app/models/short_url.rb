@@ -73,10 +73,18 @@ class ShortUrl
   end
 
   def redis
-    @redis ||= Redis.new(:driver => :hiredis)
+    if ENV['REDIS_PASSWORD']
+      @redis ||= Redis.new(:driver => :hiredis, :host => ENV['OPENSHIFT_REDIS_HOST'], :port => ENV['OPENSHIFT_REDIS_PORT'], :password => ENV['REDIS_PASSWORD'])
+    else
+      @redis ||= Redis.new(:driver => :hiredis)
+    end
   end
 
   def self.redis
-    @redis ||= Redis.new(:driver => :hiredis)
+    if ENV['REDIS_PASSWORD']
+      @redis ||= Redis.new(:driver => :hiredis, :host => ENV['OPENSHIFT_REDIS_HOST'], :port => ENV['OPENSHIFT_REDIS_PORT'], :password => ENV['REDIS_PASSWORD'])
+    else
+      @redis ||= Redis.new(:driver => :hiredis)
+    end
   end
 end
